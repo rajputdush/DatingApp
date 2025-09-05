@@ -6,9 +6,15 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
+// Use basename only in production (GitHub Pages)
+const basename =
+  process.env.NODE_ENV === "production" ? "/DatingApp" : "/";
+
+
 root.render(
   <React.StrictMode>
-    <BrowserRouter basename="/DatingApp">
+    <BrowserRouter basename={basename}>
       <App />
     </BrowserRouter>
   </React.StrictMode>
