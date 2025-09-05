@@ -1,6 +1,4 @@
-import {
-  BrowserRouter as Router, Routes, Route
-} from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import Home from './components/Home';
 import About from './components/About';
 import Navbar from './components/Navbar';
@@ -13,8 +11,7 @@ import NotFound from "./components/NotFound";
 
 function App() {
   return (
-
-    <Router>
+    <>
       <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
@@ -27,8 +24,7 @@ function App() {
         {/* Fallback route for unknown paths */}
         <Route path="*" element={<NotFound />} />
       </Routes>
-      
-    </Router>
+    </>
   );
 }
 
