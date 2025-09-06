@@ -1,23 +1,32 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta charset="utf-8" />
-    <title>Redirecting...</title>
-    <script type="text/javascript">
-      (function() {
-        var repo = "/DatingApp"; // your repo/subfolder name
-        var path = window.location.pathname + window.location.search + window.location.hash;
 
-        // If path already starts with repo, remove it to avoid double prefix
+<head>
+  <meta charset="utf-8" />
+  <title>Redirecting...</title>
+  <script type="text/javascript">
+    (function () {
+      var repo = "/DatingApp"; // your repo/subfolder name
+      var path =
+        window.location.pathname +
+        window.location.search +
+        window.location.hash;
+
+      // Only redirect if index.html is not already in the URL
+      if (!path.includes("/index.html")) {
+        // Remove repo prefix if present
         if (path.indexOf(repo) === 0) {
           path = path.slice(repo.length);
         }
 
-        // Redirect to index.html while preserving the original path
+        // Redirect to index.html with the original path
         window.location.replace(repo + "/index.html" + path);
-      })();
-    </script>
-    <!-- <meta http-equiv="refresh" content="0; url=/DatingApp/" /> -->
-  </head>
-  <body></body>
+      }
+    })();
+  </script>
+  <!-- <meta http-equiv="refresh" content="0; url=/DatingApp/" /> -->
+</head>
+
+<body></body>
+
 </html>
