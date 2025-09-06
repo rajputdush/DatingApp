@@ -12,14 +12,30 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 //   process.env.NODE_ENV === "production" ? "/DatingApp" : "/";
 
   // Detect if running on GitHub Pages
-const isGitHubPages = window.location.hostname.includes("github.io");
+// const isGitHubPages = window.location.hostname.includes("github.io");
 
-// Use "/DatingApp" only on GitHub Pages, otherwise "/"
-const basename = isGitHubPages ? "/DatingApp" : "/";
+// // Use "/DatingApp" only on GitHub Pages, otherwise "/"
+// const basename = isGitHubPages ? "/DatingApp" : "/";
 
+function getBasename() {
+  const isGitHubPages = window.location.hostname.includes("github.io");
+  return isGitHubPages ? "/DatingApp" : "/";
+}
+
+// Handle redirect query param (from 404.html)
+function getInitialPath() {
+  const params = new URLSearchParams(window.location.search);
+  const redirect = params.get("redirect");
+  if (redirect) {
+    const newUrl = window.location.origin + getBasename() + redirect;
+    window.history.replaceState(null, "", newUrl);
+  }
+}
+
+getInitialPath();
 root.render(
   <React.StrictMode>
-    <BrowserRouter basename={basename}>
+    <BrowserRouter basename={getBasename()}>
       <App />
     </BrowserRouter>
   </React.StrictMode>
