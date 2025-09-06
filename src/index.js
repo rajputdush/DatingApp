@@ -8,9 +8,14 @@ import reportWebVitals from './reportWebVitals';
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
 // Use basename only in production (GitHub Pages)
-const basename =
-  process.env.NODE_ENV === "production" ? "/DatingApp" : "/";
+// const basename =
+//   process.env.NODE_ENV === "production" ? "/DatingApp" : "/";
 
+  // Detect if running on GitHub Pages
+const isGitHubPages = window.location.hostname.includes("github.io");
+
+// Use "/DatingApp" only on GitHub Pages, otherwise "/"
+const basename = isGitHubPages ? "/DatingApp" : "/";
 
 root.render(
   <React.StrictMode>
